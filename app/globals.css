@@ -1,0 +1,145 @@
+:root[data-theme="light"] {
+  --bg: #fdfdfd;
+  --fg: #111;
+  --muted: #e5e5e5;
+  --border: #cfcfcf;
+}
+:root[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --fg: #eee;
+  --muted: #1b1b1b;
+  --border: #333;
+}
+
+* { box-sizing: border-box }
+html, body { height: 100% }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Top bar */
+.topbar {
+  border-bottom: 2px solid var(--fg);
+  padding: 8px 12px;
+}
+.brand {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 600; margin-bottom: 6px;
+}
+.brand .title { letter-spacing: 0.2px }
+.brand .student { opacity: 0.9 }
+.tabs {
+  display: flex; gap: 14px; align-items: center;
+  border-top: 2px solid var(--fg);
+  border-bottom: 2px solid var(--fg);
+  padding: 6px 0; margin-bottom: 6px;
+}
+.tabs a { text-decoration: none; color: var(--fg) }
+.burger { margin-left: auto; border: 1px solid var(--fg); background: transparent; padding: 2px 8px; }
+.toggle-wrap { display: flex; align-items: center; gap: 8px; }
+
+/* iOS-style switch */
+.switch { position: relative; display: inline-block; width: 42px; height: 22px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; inset: 0; background: var(--muted); border: 1px solid var(--border); border-radius: 999px; transition: .2s; }
+.slider:before { content: ""; position: absolute; height: 18px; width: 18px; left: 2px; top: 1px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; transition: .2s; }
+input:checked + .slider { background: #777 }
+input:checked + .slider:before { transform: translateX(19px); }
+.toggle-label { font-size: 13px }
+
+/* Layout grid */
+.container { max-width: 1100px; margin: 16px auto; padding: 0 12px; }
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.left .section-title { margin: 0 0 8px 0; }
+.tabs-headers { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.add { border: 1px solid var(--fg); background: transparent; padding: 2px 6px; }
+
+/* Steps */
+.steps { list-style: none; padding: 0; margin: 8px 0 16px; }
+.step {
+  background: transparent;
+  border: 1.8px solid var(--fg);
+  padding: 6px 10px;
+  margin: 8px 0;
+  width: 110px;
+  text-align: left;
+  cursor: pointer;
+}
+.step.active { outline: 3px solid var(--fg); outline-offset: 2px; }
+
+/* Content panel */
+.panel {
+  border: 2px solid var(--fg);
+  width: 320px;
+  min-height: 170px;
+  background: var(--bg);
+}
+.panel-title {
+  border-bottom: 2px solid var(--fg);
+  padding: 6px 8px;
+  font-weight: 600;
+}
+.panel-body { padding: 8px 12px; }
+.panel-step { margin-bottom: 6px; font-weight: 600; }
+
+/* Output */
+.right .output-title {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1.8px solid var(--fg);
+  margin-bottom: 8px;
+  background: var(--bg);
+}
+.output-box {
+  border: 2px solid var(--fg);
+  padding: 10px;
+  min-height: 220px;
+  background: var(--bg);
+}
+.code {
+  margin: 0; overflow: auto; max-height: 360px; white-space: pre;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+}
+
+/* Footer */
+.footer {
+  border-top: 2px solid var(--fg);
+  padding: 10px 12px;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Simple stubs */
+.stub { padding: 24px; border: 2px dashed var(--border); }
+.about { padding: 12px; }
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .panel, .output-box { width: 100%; }
+}
+/* Escape Room */
+.escape-root { position: relative; min-height: calc(100vh - 140px); }
+.escape-bg { position: absolute; inset: 0; background: url('/escape-bg.jpg') center/cover no-repeat; opacity: .25; }
+.escape-ui { position: relative; padding: 12px; }
+.escape-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.timer button { margin-left: 6px; }
+.stages { align-items: flex-start; margin-top: 8px; gap: 16px; }
+.stage-list { list-style: none; margin: 0; padding: 0; width: 280px; }
+.stage { width: 100%; text-align: left; margin: 8px 0; padding: 6px 8px; border: 2px solid var(--fg); background: transparent; cursor: pointer; }
+.stage.active { outline: 3px solid var(--fg); outline-offset: 2px; }
+.stage-content { flex: 1; border: 2px solid var(--fg); background: var(--bg); padding: 10px; }
+.room-img { width: 100%; height: 220px; background: url('/escape-bg.jpg') center/cover no-repeat; position: relative; border: 1px dashed var(--border); }
+.output-wrap { margin-top: 8px; }
+.output-title { display:inline-block; padding: 4px 8px; border: 2px solid var(--fg); margin-bottom: 6px; }
+.output { border: 2px solid var(--fg); padding: 8px; min-height: 140px; max-height: 320px; overflow: auto; background: var(--bg); }
+.actions { margin-top: 8px; display:flex; gap:10px; align-items:center; }
+.msg { font-size: 12px; opacity: .8; }
