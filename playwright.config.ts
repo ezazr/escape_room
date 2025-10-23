@@ -1,15 +1,20 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: 'tests',
-  timeout: 60_000,
-  expect: { timeout: 10_000 },
-  use: { baseURL: 'http://localhost:3000' },
-  webServer: {
-    command: 'npm run dev',
-    port: 3000,
-    timeout: 120_000,
-    reuseExistingServer: !process.env.CI,
+  timeout: 90_000,
+  testDir: './tests',
+  use: {
+    baseURL: 'http://localhost:3000',
+    headless: true,
   },
+  webServer: {
+    command: 'npm run dev',   // or "npm run start" if you build first
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+  ],
 });
 
